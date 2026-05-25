@@ -24,3 +24,9 @@
     transform: translateY(-6px) rotate(5deg);
   }
 }
+
+@media (max-width: 600px) {
+  .hand {
+    font-size: 20px;
+  }
+}

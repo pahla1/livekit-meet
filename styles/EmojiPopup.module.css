@@ -36,3 +36,18 @@
 .emojiBtn:active {
   transform: scale(0.95);
 }
+
+@media (max-width: 600px) {
+  .popup {
+    min-width: unset;
+    max-width: calc(100vw - 16px);
+    flex-wrap: wrap;
+    left: 0;
+    transform: none;
+  }
+  .emojiBtn {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+}

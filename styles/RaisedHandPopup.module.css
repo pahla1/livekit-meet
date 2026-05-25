@@ -70,4 +70,28 @@
 
 .btnWrapper {
   position: relative;
+  display: flex;
+}
+
+.handBtn {
+  position: relative;
+  z-index: 1;
+}
+
+.toggleBtn {
+  padding: 0 6px;
+  font-size: 0.75rem;
+  min-width: 32px;
+}
+
+@media (max-width: 600px) {
+  .popup {
+    max-width: calc(100vw - 16px);
+    left: 0;
+    right: auto;
+  }
+  .toggleBtn {
+    min-width: 44px;
+    min-height: 44px;
+  }
 }

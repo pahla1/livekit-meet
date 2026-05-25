@@ -78,7 +78,7 @@ export function RaisedHandPopup() {
         </div>
       )}
       <button
-        className="lk-button"
+        className={`lk-button ${styles.handBtn}`}
         title={localRaised ? 'Lower hand' : 'Raise hand'}
         onClick={handleToggle}
         aria-pressed={localRaised}
@@ -88,11 +88,10 @@ export function RaisedHandPopup() {
       </button>
       {count > 0 && (
         <button
-          className="lk-button"
+          className={`lk-button ${styles.toggleBtn}`}
           title="Show raised hands"
           onClick={handlePopupToggle}
           aria-pressed={open}
-          style={{ padding: '0 6px', fontSize: '0.7rem' }}
         >
           ▲
         </button>
