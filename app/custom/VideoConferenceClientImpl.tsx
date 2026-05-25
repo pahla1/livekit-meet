@@ -13,6 +13,12 @@ import {
 import { DebugMode } from '@/lib/Debug';
 import { useEffect, useMemo, useState } from 'react';
 import { KeyboardShortcuts } from '@/lib/KeyboardShortcuts';
+import { ReactionOverlay } from '@/lib/ReactionOverlay';
+import { ReactionPicker } from '@/lib/ReactionPicker';
+import { RaisedHandPopup } from '@/lib/RaisedHandPopup';
+import { RaisedHandOverlay } from '@/lib/RaisedHandOverlay';
+import { RaisedHandsProvider } from '@/lib/useRaisedHands';
+import { ReactionsProvider, useReactions } from '@/lib/useReactions';
 import { SettingsMenu } from '@/lib/SettingsMenu';
 import { useSetupE2EE } from '@/lib/useSetupE2EE';
 import { useLowCPUOptimizer } from '@/lib/usePerfomanceOptimiser';
@@ -84,15 +90,33 @@ export function VideoConferenceClientImpl(props: {
   return (
     <div className="lk-room-container">
       <RoomContext.Provider value={room}>
-        <KeyboardShortcuts />
-        <VideoConference
-          chatMessageFormatter={formatChatMessageLinks}
-          SettingsComponent={
-            process.env.NEXT_PUBLIC_SHOW_SETTINGS_MENU === 'true' ? SettingsMenu : undefined
-          }
-        />
-        <DebugMode logLevel={LogLevel.debug} />
+        <RaisedHandsProvider>
+          <ReactionsProvider>
+            <CustomRoomInnerUI />
+          </ReactionsProvider>
+        </RaisedHandsProvider>
       </RoomContext.Provider>
     </div>
+  );
+}
+
+function CustomRoomInnerUI() {
+  const { sendReaction } = useReactions();
+
+  return (
+    <>
+      <KeyboardShortcuts />
+      <VideoConference
+        chatMessageFormatter={formatChatMessageLinks}
+        SettingsComponent={
+          process.env.NEXT_PUBLIC_SHOW_SETTINGS_MENU === 'true' ? SettingsMenu : undefined
+        }
+      />
+      <ReactionPicker onEmojiClick={sendReaction} />
+      <RaisedHandPopup />
+      <ReactionOverlay />
+      <RaisedHandOverlay />
+      <DebugMode logLevel={LogLevel.debug} />
+    </>
   );
 }

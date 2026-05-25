@@ -1,0 +1,73 @@
+.popup {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  max-width: 300px;
+  padding: 8px 0;
+  border-radius: 12px;
+  background: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.popupTitle {
+  padding: 0 12px 6px;
+  font-size: 0.75rem;
+  color: var(--lk-fg);
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  color: var(--lk-fg);
+}
+
+.entryIcon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.entryName {
+  font-weight: 500;
+}
+
+.emptyMsg {
+  padding: 12px;
+  font-size: 0.8rem;
+  color: var(--lk-fg);
+  opacity: 0.4;
+  text-align: center;
+}
+
+.badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.btnWrapper {
+  position: relative;
+}

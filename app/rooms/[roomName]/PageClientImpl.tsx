@@ -4,6 +4,12 @@ import React from 'react';
 import { decodePassphrase } from '@/lib/client-utils';
 import { DebugMode } from '@/lib/Debug';
 import { KeyboardShortcuts } from '@/lib/KeyboardShortcuts';
+import { ReactionOverlay } from '@/lib/ReactionOverlay';
+import { ReactionPicker } from '@/lib/ReactionPicker';
+import { RaisedHandPopup } from '@/lib/RaisedHandPopup';
+import { RaisedHandOverlay } from '@/lib/RaisedHandOverlay';
+import { RaisedHandsProvider } from '@/lib/useRaisedHands';
+import { ReactionsProvider, useReactions } from '@/lib/useReactions';
 import { RecordingIndicator } from '@/lib/RecordingIndicator';
 import { SettingsMenu } from '@/lib/SettingsMenu';
 import { ConnectionDetails } from '@/lib/types';
@@ -226,14 +232,32 @@ function VideoConferenceComponent(props: {
   return (
     <div className="lk-room-container">
       <RoomContext.Provider value={room}>
-        <KeyboardShortcuts />
-        <VideoConference
-          chatMessageFormatter={formatChatMessageLinks}
-          SettingsComponent={SHOW_SETTINGS_MENU ? SettingsMenu : undefined}
-        />
-        <DebugMode />
-        <RecordingIndicator />
+        <RaisedHandsProvider>
+          <ReactionsProvider>
+            <RoomInnerUI />
+          </ReactionsProvider>
+        </RaisedHandsProvider>
       </RoomContext.Provider>
     </div>
+  );
+}
+
+function RoomInnerUI() {
+  const { sendReaction } = useReactions();
+
+  return (
+    <>
+      <KeyboardShortcuts />
+      <VideoConference
+        chatMessageFormatter={formatChatMessageLinks}
+        SettingsComponent={SHOW_SETTINGS_MENU ? SettingsMenu : undefined}
+      />
+      <ReactionPicker onEmojiClick={sendReaction} />
+      <RaisedHandPopup />
+      <ReactionOverlay />
+      <RaisedHandOverlay />
+      <DebugMode />
+      <RecordingIndicator />
+    </>
   );
 }
