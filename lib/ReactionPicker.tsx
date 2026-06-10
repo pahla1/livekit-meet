@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import popupStyles from '@/styles/EmojiPopup.module.css';
 
-const REACTION_EMOJIS = ['👍', '❤️', '😂', '👏', '🎉', '😮', '🔥', '😢', '👀', '💯'];
+const REACTION_EMOJIS = ['👍', '❤️', '😂', '👏', '🎉', '😮', '🔥', '😢', '👀', '💯', '✍️'];
 
 export function ReactionPicker({ onEmojiClick }: { onEmojiClick: (emoji: string) => void }) {
   const [open, setOpen] = useState(false);

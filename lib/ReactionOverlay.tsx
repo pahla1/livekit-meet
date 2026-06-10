@@ -24,8 +24,11 @@ function FloatingEmoji({
   const position = useTilePosition(reaction.participantIdentity);
   const drift = useMemo(
     () => ({
-      startX: Math.round((Math.random() - 0.5) * 60),
-      endX: Math.round((Math.random() - 0.5) * 80),
+      startX: Math.round((Math.random() - 0.5) * 120),
+      endX: Math.round((Math.random() - 0.5) * 140),
+      startY: Math.round(Math.random() * 30),
+      rotation: Math.round((Math.random() - 0.5) * 40),
+      scale: 0.85 + Math.random() * 0.3,
     }),
     [], // eslint-disable-line react-hooks/exhaustive-deps
   );
@@ -38,6 +41,9 @@ function FloatingEmoji({
         bottom: `${position.bottom}%`,
         '--drift-start': `${drift.startX}px`,
         '--drift-end': `${drift.endX}px`,
+        '--start-y': `${drift.startY}px`,
+        '--rotation': `${drift.rotation}deg`,
+        '--scale': drift.scale,
       } as React.CSSProperties}
     >
       {reaction.emoji}

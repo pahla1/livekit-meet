@@ -13,6 +13,7 @@ import {
 import { DebugMode } from '@/lib/Debug';
 import { useEffect, useMemo, useState } from 'react';
 import { KeyboardShortcuts } from '@/lib/KeyboardShortcuts';
+import { ReactionBadgeOverlay } from '@/lib/ReactionBadgeOverlay';
 import { ReactionOverlay } from '@/lib/ReactionOverlay';
 import { ReactionPicker } from '@/lib/ReactionPicker';
 import { RaisedHandPopup } from '@/lib/RaisedHandPopup';
@@ -115,6 +116,7 @@ function CustomRoomInnerUI() {
       <ReactionPicker onEmojiClick={sendReaction} />
       <RaisedHandPopup />
       <ReactionOverlay />
+      <ReactionBadgeOverlay />
       <RaisedHandOverlay />
       <DebugMode logLevel={LogLevel.debug} />
     </>

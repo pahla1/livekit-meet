@@ -4,6 +4,7 @@ import React from 'react';
 import { decodePassphrase } from '@/lib/client-utils';
 import { DebugMode } from '@/lib/Debug';
 import { KeyboardShortcuts } from '@/lib/KeyboardShortcuts';
+import { ReactionBadgeOverlay } from '@/lib/ReactionBadgeOverlay';
 import { ReactionOverlay } from '@/lib/ReactionOverlay';
 import { ReactionPicker } from '@/lib/ReactionPicker';
 import { RaisedHandPopup } from '@/lib/RaisedHandPopup';
@@ -255,6 +256,7 @@ function RoomInnerUI() {
       <ReactionPicker onEmojiClick={sendReaction} />
       <RaisedHandPopup />
       <ReactionOverlay />
+      <ReactionBadgeOverlay />
       <RaisedHandOverlay />
       <DebugMode />
       <RecordingIndicator />

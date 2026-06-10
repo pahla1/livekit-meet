@@ -16,12 +16,15 @@
   gap: 6px;
   font-size: 40px;
   line-height: 1;
-  animation: floatUp 5s ease-out forwards;
+  animation: floatUp 3.5s ease-out forwards;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
   will-change: transform, opacity;
   white-space: nowrap;
   --drift-start: 0px;
   --drift-end: 0px;
+  --start-y: 0px;
+  --rotation: 0deg;
+  --scale: 1;
 }
 
 .name {
@@ -37,25 +40,33 @@
 @keyframes floatUp {
   0% {
     opacity: 1;
-    transform: translate(var(--drift-start), 0) scale(0.5);
+    transform: translate(var(--drift-start), var(--start-y)) scale(0.4) rotate(0deg);
   }
-  8% {
+  10% {
     opacity: 1;
-    transform: translate(var(--drift-start), -10px) scale(1.2);
+    transform: translate(var(--drift-start), calc(-15px + var(--start-y))) scale(1.2)
+      rotate(calc(var(--rotation) * 0.3));
   }
-  15% {
-    transform: translate(calc(var(--drift-start) * 0.8), -20px) scale(1);
+  25% {
+    transform: translate(calc(var(--drift-start) * 0.6), calc(-40px + var(--start-y)))
+      scale(var(--scale)) rotate(calc(var(--rotation) * 0.5));
   }
-  40% {
-    transform: translate(calc((var(--drift-start) + var(--drift-end)) * 0.5), -70px) scale(1);
+  50% {
+    transform: translate(
+        calc((var(--drift-start) + var(--drift-end)) * 0.4),
+        calc(-90px + var(--start-y))
+      )
+      scale(var(--scale)) rotate(calc(var(--rotation) * 0.8));
   }
-  70% {
-    opacity: 1;
-    transform: translate(calc(var(--drift-end) * 0.8), -120px) scale(1);
+  75% {
+    opacity: 0.8;
+    transform: translate(calc(var(--drift-end) * 0.7), calc(-150px + var(--start-y))) scale(0.9)
+      rotate(var(--rotation));
   }
   100% {
     opacity: 0;
-    transform: translate(var(--drift-end), -200px) scale(0.8);
+    transform: translate(var(--drift-end), calc(-220px + var(--start-y))) scale(0.6)
+      rotate(calc(var(--rotation) * 1.2));
   }
 }
 
