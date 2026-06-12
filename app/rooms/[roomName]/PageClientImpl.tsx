@@ -11,6 +11,7 @@ import { RaisedHandPopup } from '@/lib/RaisedHandPopup';
 import { RaisedHandOverlay } from '@/lib/RaisedHandOverlay';
 import { RaisedHandsProvider } from '@/lib/useRaisedHands';
 import { ReactionsProvider, useReactions } from '@/lib/useReactions';
+import { SoundEffectsProvider } from '@/lib/useSoundEffects';
 import { RecordingIndicator } from '@/lib/RecordingIndicator';
 import { SettingsMenu } from '@/lib/SettingsMenu';
 import { ConnectionDetails } from '@/lib/types';
@@ -234,9 +235,11 @@ function VideoConferenceComponent(props: {
     <div className="lk-room-container">
       <RoomContext.Provider value={room}>
         <RaisedHandsProvider>
-          <ReactionsProvider>
-            <RoomInnerUI />
-          </ReactionsProvider>
+          <SoundEffectsProvider>
+            <ReactionsProvider>
+              <RoomInnerUI />
+            </ReactionsProvider>
+          </SoundEffectsProvider>
         </RaisedHandsProvider>
       </RoomContext.Provider>
     </div>

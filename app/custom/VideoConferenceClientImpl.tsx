@@ -20,6 +20,7 @@ import { RaisedHandPopup } from '@/lib/RaisedHandPopup';
 import { RaisedHandOverlay } from '@/lib/RaisedHandOverlay';
 import { RaisedHandsProvider } from '@/lib/useRaisedHands';
 import { ReactionsProvider, useReactions } from '@/lib/useReactions';
+import { SoundEffectsProvider } from '@/lib/useSoundEffects';
 import { SettingsMenu } from '@/lib/SettingsMenu';
 import { useSetupE2EE } from '@/lib/useSetupE2EE';
 import { useLowCPUOptimizer } from '@/lib/usePerfomanceOptimiser';
@@ -92,9 +93,11 @@ export function VideoConferenceClientImpl(props: {
     <div className="lk-room-container">
       <RoomContext.Provider value={room}>
         <RaisedHandsProvider>
-          <ReactionsProvider>
-            <CustomRoomInnerUI />
-          </ReactionsProvider>
+          <SoundEffectsProvider>
+            <ReactionsProvider>
+              <CustomRoomInnerUI />
+            </ReactionsProvider>
+          </SoundEffectsProvider>
         </RaisedHandsProvider>
       </RoomContext.Provider>
     </div>
